@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [solution URL](https://your-solution-url.com)
-- Live Site URL: [live site URL](https://your-live-site-url.com)
+- Solution URL: [solution URL](https://www.frontendmentor.io/solutions/responsive-tip-calculator-app-using-tailwindcss-Li6tMTADeh)
+- Live Site URL: [live site URL](https://yassine-ramla.github.io/Frontend-Mentor-Tip-calculator-app-solution/)
 
 ## My process
 
