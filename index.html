@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./dist/output.css" />
+    <link rel="stylesheet" href="./dist/style.css" />
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body
+    class="w-screen min-h-100svh bg-lightGrayishCyan flex flex-col items-center font-mine md:justify-center md:gap-y-20 md:py-20">
+    <header class="py-9 md:py-0 grow md:grow-0 flex items-center">
+      <h1 class="hidden">tip calculator</h1>
+      <img src="./images/logo.svg" alt="splitter logo" />
+    </header>
+    <main class="w-full max-w-4xl">
+      <form
+        class="w-full rounded-t-2xl bg-white p-8 flex flex-col justify-evenly items-center gap-y-8 shadow-lg md:grid md:grid-rows-3 md:grid-cols-2 md:justify-center md:gap-x-8 md:h-fit md:rounded-2xl">
+        <div class="w-full relative flex flex-col gap-y-2">
+          <label
+            for="bill"
+            class="w-full flex justify-between text-darkGrayishCyan">
+            Bill
+            <span class="text-red-500 hidden" id="error1"> not valid </span>
+          </label>
+          <input
+            type="number"
+            id="bill"
+            name="bill"
+            class="w-full py-2 px-3 rounded-md text-right text-veryDarkCyan text-2xl focus:outline-strongCyan bg-veryLightGrayishCyan placeholder:text-grayishCyan placeholder:text-2xl"
+            placeholder="0"
+            min="0" />
+          <img
+            src="./images/icon-dollar.svg"
+            alt="dollar icon"
+            class="absolute left-4 top-12" />
+        </div>
+        <fieldset class="w-full flex flex-wrap gap-3">
+          <legend class="w-full text-darkGrayishCyan text-left mb-3">
+            Select Tip %
+          </legend>
+          <input type="radio" name="tip" id="five" class="hidden" checked />
+          <label
+            for="five"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryDarkCyan text-center text-2xl text-white grow">
+            5%
+          </label>
+          <input type="radio" name="tip" id="ten" class="hidden" />
+          <label
+            for="ten"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryDarkCyan text-center text-2xl text-white grow">
+            10%
+          </label>
+          <input type="radio" name="tip" id="fifteen" class="hidden" />
+          <label
+            for="fifteen"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryDarkCyan text-center text-2xl text-white grow">
+            15%
+          </label>
+          <input type="radio" name="tip" id="twenyfive" class="hidden" />
+          <label
+            for="twenyfive"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryDarkCyan text-center text-2xl text-white grow">
+            25%
+          </label>
+          <input type="radio" name="tip" id="fifty" class="hidden" />
+          <label
+            for="fifty"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryDarkCyan text-center text-2xl text-white grow">
+            50%
+          </label>
+          <input
+            type="number"
+            class="p-2 w-1/3 md:w-1/4 rounded-md bg-veryLightGrayishCyan text-right text-2xl text-veryDarkCyan focus:outline-strongCyan placeholder:text-grayishCyan placeholder:text-2xl grow"
+            placeholder="Custom"
+            id="custom"
+            min="0" />
+        </fieldset>
+        <div class="w-full relative flex flex-col gap-y-2">
+          <label
+            for="people"
+            class="w-full flex justify-between text-darkGrayishCyan">
+            Number of People
+            <span class="text-red-500 hidden" id="error2">
+              enter a valid number
+            </span>
+          </label>
+          <input
+            type="number"
+            id="people"
+            name="people"
+            class="w-full py-2 px-3 rounded-md text-right text-veryDarkCyan text-2xl focus:outline-strongCyan bg-veryLightGrayishCyan placeholder:text-grayishCyan placeholder:text-2xl"
+            placeholder="0"
+            min="1" />
+          <img
+            src="./images/icon-person.svg"
+            alt="a person icon"
+            class="absolute left-4 top-12" />
+        </div>
+        <div
+          class="w-full rounded-xl bg-veryDarkCyan flex flex-col gap-y-8 py-8 px-4 md:row-start-1 md:row-end-4 md:col-start-2 md:col-end-3 md:h-full">
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white text-left">
+              Tip Amount<br /><span class="text-grayishCyan text-sm">
+                / person
+              </span>
+            </p>
+            <p class="text-3xl text-strongCyan text-right">
+              $<span id="tipAmount">0.00</span>
+            </p>
+          </div>
+          <div class="w-full flex justify-between items-center">
+            <p class="text-white text-left">
+              Total<br /><span class="text-grayishCyan text-sm">/ person</span>
+            </p>
+            <p class="text-3xl text-strongCyan text-right">
+              $<span id="total">0.00</span>
+            </p>
+          </div>
+          <button
+            class="w-full rounded-md bg-strongCyanOpacity hover:bg-strongCyan hover:bg- text-center text-veryDarkCyan text-2xl p-2 md:mt-auto"
+            id="reset">
+            RESET
+          </button>
+        </div>
+      </form>
+    </main>
+    <script>
+      const bill = document.getElementById("bill");
+      const five = document.getElementById("five");
+      const ten = document.getElementById("ten");
+      const fifteen = document.getElementById("fifteen");
+      const twenyfive = document.getElementById("twenyfive");
+      const fifty = document.getElementById("fifty");
+      const custom = document.getElementById("custom");
+      const people = document.getElementById("people");
+      const tipAmount = document.getElementById("tipAmount");
+      const total = document.getElementById("total");
+      const error1 = document.getElementById("error1");
+      const error2 = document.getElementById("error2");
+      const reset = document.getElementById("reset");
+      let tip = 0.05;
+      five.addEventListener("click", () => {
+        tip = 0.05;
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      ten.addEventListener("click", () => {
+        tip = 0.1;
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      fifteen.addEventListener("click", () => {
+        tip = 0.15;
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      twenyfive.addEventListener("click", () => {
+        tip = 0.25;
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      fifty.addEventListener("click", () => {
+        tip = 0.5;
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      custom.addEventListener("focus", () => {
+        five.checked = false;
+        ten.checked = false;
+        fifteen.checked = false;
+        twenyfive.checked = false;
+        fifty.checked = false;
+      });
+      custom.addEventListener("blur", () => {
+        if (custom.value.length === 0) {
+          switch (tip) {
+            case 0.05:
+              five.checked = true;
+              break;
+            case 0.1:
+              ten.checked = true;
+              break;
+            case 0.15:
+              fifteen.checked = true;
+              break;
+            case 0.25:
+              twenyfive.checked = true;
+              break;
+            case 0.5:
+              fifty.checked = true;
+              break;
+          }
+        }
+        if (bill.value.length === 0) {
+          error1.classList.remove("hidden");
+          bill.classList.add("border-red-500");
+          bill.classList.add("border-2");
+        } else {
+          error1.classList.add("hidden");
+          bill.classList.remove("border-red-500");
+          bill.classList.remove("border-2");
+        }
+        if (people.value.length === 0) {
+          error2.innerText = "not valid";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else if (people.value < 1) {
+          error2.innerText = "Can't be zero";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else {
+          error2.classList.add("hidden");
+          people.classList.remove("border-red-500");
+          people.classList.remove("border-2");
+        }
+      });
+      custom.addEventListener("keyup", () => {
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      bill.addEventListener("keyup", () => {
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      bill.addEventListener("blur", () => {
+        if (bill.value.length === 0) {
+          error1.classList.remove("hidden");
+          bill.classList.add("border-red-500");
+          bill.classList.add("border-2");
+        } else {
+          error1.classList.add("hidden");
+          bill.classList.remove("border-red-500");
+          bill.classList.remove("border-2");
+        }
+        if (people.value.length === 0) {
+          error2.innerText = "not valid";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else if (people.value < 1) {
+          error2.innerText = "Can't be zero";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else {
+          error2.classList.add("hidden");
+          people.classList.remove("border-red-500");
+          people.classList.remove("border-2");
+        }
+      });
+      people.addEventListener("keyup", () => {
+        if (
+          bill.value.length !== 0 &&
+          people.value.length !== 0 &&
+          people.value > 0
+        ) {
+          const tipAmountValue =
+            parseFloat(bill.value) * (parseFloat(custom.value) / 100 || tip);
+          tipAmount.innerText = (tipAmountValue / people.value).toFixed(2);
+          total.innerText = (
+            (parseFloat(bill.value) + tipAmountValue) /
+            people.value
+          ).toFixed(2);
+        }
+      });
+      people.addEventListener("blur", () => {
+        if (bill.value.length === 0) {
+          error1.classList.remove("hidden");
+          bill.classList.add("border-red-500");
+          bill.classList.add("border-2");
+        } else {
+          error1.classList.add("hidden");
+          bill.classList.remove("border-red-500");
+          bill.classList.remove("border-2");
+        }
+        if (people.value.length === 0) {
+          error2.innerText = "not valid";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else if (people.value < 1) {
+          error2.innerText = "Can't be zero";
+          error2.classList.remove("hidden");
+          people.classList.add("border-red-500");
+          people.classList.add("border-2");
+        } else {
+          error2.classList.add("hidden");
+          people.classList.remove("border-red-500");
+          people.classList.remove("border-2");
+        }
+      });
+      reset.addEventListener("click", (event) => {
+        event.preventDefault();
+        bill.value = "";
+        tip = 0.05;
+        five.checked = true;
+        custom.value = "";
+        people.value = "";
+        tipAmount.innerText = "0.00";
+        total.innerText = "0.00";
+      });
+    </script>
+  </body>
+</html>
